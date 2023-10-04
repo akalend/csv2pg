@@ -9,3 +9,7 @@ This utility transform field mane to lower and change ' ' to '_'.
 'Product_key'  => product_key
 ```
 
+Field types are only : 
+ - text
+ -  bigint
+ -  double
