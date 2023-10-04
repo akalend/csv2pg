@@ -13,3 +13,8 @@ Field types are only :
  - text
  -  bigint
  -  double
+
+**usage**
+```
+./scv2pg <fileName> [<tablename>]
+```
