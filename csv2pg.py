@@ -8,16 +8,25 @@ import pandas as pd
 
 def newName(name):
     newName = ''
+    pred = ' ';
     for c in name:
         c2 = ''
         if c == ' ':
             continue
+        if c == '_' and pred == '_':
+            continue;
         if str.isupper(c):
-            c2 = '_'
+            if pred != '_' and pred != '-':
+                c2 = '_'
+            pred = '_'
+
         newName = newName + c2 + str.lower(c)
+        pred = c
+
+    pred = newName[-1];
 
     if newName[0] == '_':
-        return newName[1:]  
+        return newName[1:]
 
     return newName
 
@@ -40,8 +49,9 @@ if __name__ == "__main__":
     else:
         tablename = argv[2]
 
-    engine = create_engine('postgresql://postgres:@localhost:5432/test')
-    df=pd.read_csv(filename, delimiter=';')
+    engine = create_engine('postgresql://postgres:@localhost:5432/adult')
+    df=pd.read_csv(filename, delimiter=',')
+    print(df.columns)
 
     df = df.rename(columns=lambda x : newName(x))
     df.to_sql(tablename, engine)
