@@ -33,7 +33,7 @@ def newName(name):
 
 if __name__ == "__main__":
     if len(argv) == 1:
-        print('Usage: csc2pg  <full filename> [<tablename>]')
+        print('Usage: csc2pg  <full filename> [<tablename>] [<schema>]')
         print("\tExample: csc2pg  customer.csv customer")
         exit(1)
 
@@ -49,9 +49,24 @@ if __name__ == "__main__":
     else:
         tablename = argv[2]
 
-    engine = create_engine('postgresql://postgres:@localhost:5432/adult')
+
+
+    database = 'postgres'
+    if len(argv) == 4:
+        database = argv[3]
+
+    engine = create_engine('postgresql://postgres:@localhost:5432/' + database)
+    # engine = create_engine('postgresql://postgres:@127.0.0.1:5433/postgresml')
     df=pd.read_csv(filename, delimiter=',')
     print(df.columns)
 
     df = df.rename(columns=lambda x : newName(x))
+    
+
+    if len(argv) == 4:
+        print("tablename={}  dbname={}".format(tablename, argv[3]))
+    else:
+        print("tablename={} ".format(tablename))
+
     df.to_sql(tablename, engine)
+    # df.to_sql(tablename, engine, schema = argv[3])

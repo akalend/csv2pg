@@ -7,6 +7,7 @@ This utility transform field mane to lower and change ' ' to '_'.
 ```
 'Produrt Name' => product_name
 'Product_key'  => product_key
+'ProductID'    => product_id
 ```
 
 Field types are only : 
@@ -16,5 +17,5 @@ Field types are only :
 
 **usage**
 ```
-./scv2pg <fileName> [<tablename>]
+./scv2pg <fileName> [<tablename>] [<database>]
 ```
