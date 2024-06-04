@@ -7,7 +7,6 @@ This utility transform field mane to lower and change ' ' to '_'.
 ```
 'Produrt Name' => product_name
 'Product_key'  => product_key
-'ProductID'    => product_id
 ```
 
 Field types are only : 
