@@ -33,7 +33,7 @@ def newName(name):
 
 if __name__ == "__main__":
     if len(argv) == 1:
-        print('Usage: csc2pg  <full filename> [<tablename>] [<schema>]')
+        print('Usage: csc2pg  <full filename> [<tablename>] [<dbname>]')
         print("\tExample: csc2pg  customer.csv customer")
         exit(1)
 
@@ -68,5 +68,6 @@ if __name__ == "__main__":
     else:
         print("tablename={} ".format(tablename))
 
-    df.to_sql(tablename, engine)
+    # df.head(4)
+    df.to_sql(tablename, engine, index=False)
     # df.to_sql(tablename, engine, schema = argv[3])
